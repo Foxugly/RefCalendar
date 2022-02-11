@@ -1,1 +1,5 @@
 /db.sqlite3
+season/__pycache__/*
+referee/__pycache__/*
+RefCalendar/__pycache__/*
+event/__pycache__/*
