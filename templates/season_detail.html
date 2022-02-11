@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card my-4">
+                <div class="card-body">
+                    <h2 class="text-center">Detail Season</h2>
+                    <div class="row my-2">
+                        <label class="col-md-3" for="id_name">Name:</label>
+                        <input type="text" name="name" value="{{ object.name }}"
+                               class="col-md-9 form-control" maxlength="100" id="id_name" readonly="readonly">
+                    </div>
+                    <div class="row my-2">
+                        <label class="col-md-3" for="id_start">Start:</label>
+                        <input type="text" name="email" value="{{ object.start | date:'d/m/Y'}}" class="col-md-9 form-control"
+                               readonly="readonly" id="id_start">
+                    </div>
+                    <div class="row my-2">
+                        <label class="col-md-3" for="id_end">End:</label>
+                        <input type="text" name="end" value="{{ object.end | date:'d/m/Y' }}"
+                               class="col-md-9 form-control" maxlength="100" readonly="readonly" id="id_end">
+                    </div>
+                    <div class="row my-2">
+                        <label class="col-md-3" for="id_is_active">Active:</label>
+                        <input class="col-md-9" type="checkbox" name="is_active" id="id_is_active"
+                               {% if object.active %}checked=""{% endif %}>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

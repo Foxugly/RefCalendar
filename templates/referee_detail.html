@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card my-4">
+                <div class="card-body">
+                    <h2 class="text-center">Detail {{ object.get_full_name }}</h2>
+                    <div class="row my-2">
+                        <label class="col-md-3" for="id_username">Username:</label>
+                        <input type="text" name="username" value="{{ object.user.username }}"
+                               class="col-md-9 form-control" maxlength="100" id="id_username" readonly="readonly">
+                    </div>
+                    <div class="row my-2">
+                        <label class="col-md-3" for="id_email">Email:</label>
+                        <input type="text" name="email" value="{{ object.user.email }}" class="col-md-9 form-control"
+                               readonly="readonly" id="id_email">
+                    </div>
+                    <div class="row my-2">
+                        <label class="col-md-3" for="id_first_name">First name:</label>
+                        <input type="text" name="first_name" value="{{ object.user.first_name }}"
+                               class="col-md-9 form-control" maxlength="100" readonly="readonly" id="id_first_name">
+                    </div>
+                    <div class="row my-2">
+                        <label class="col-md-3" for="id_last_name">Last name:</label>
+                        <input type="text" name="last_name" value="Vilain" class="col-md-9 form-control"
+                               readonly="readonly"
+                               id="id_last_name">
+                    </div>
+                    <div class="row my-2">
+                        <label class="col-md-3" for="id_is_active">Active:</label>
+                        <input class="col-md-9" type="checkbox" name="is_active" id="id_is_active" {% if object.user.is_active %}checked=""{%  endif %}>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock content %}

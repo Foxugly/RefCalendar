@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block head %}
+    <meta charset='utf-8'/>
+    <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
+    <link href="{% static 'fullcalendar/main.css' %}" rel='stylesheet'/>
+    <script src="{% static 'fullcalendar/main.js' %}"></script>
+    <script src="{% static 'fullcalendar/locales-all.js' %}"></script>
+    <script>
+        var startDate = null;
+        var endDate = null;
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                locale: '{{ user.referee.language }}',
+                initialView: 'dayGridMonth',
+                firstDay: 1,
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'customadd dayGridMonth,listMonth'
+                },
+                customButtons: {
+                    customadd: {
+                        text: '{% translate "Add" %}',
+                        click: function () {
+                            if (startDate != null) {
+                                $.ajax({
+                                    url: '{%  url "add_event" %}',
+                                    type: 'get', // This is the default though, you don't actually need to always mention it
+                                    data: {start: startDate, end: endDate},
+                                    success: function (data) {
+                                        calendar.addEvent({
+                                            title: '{{ user.referee.event_text }}',
+                                            start: startDate,
+                                            end: endDate,
+                                            allDay: true
+                                        });
+                                        startDate = null;
+                                        endDate = null;
+                                    },
+                                    failure: function (data) {
+                                        alert('Got an error dude');
+                                    }
+                                });
+
+                            } else {
+                                alert("Please select a date or a daterange !")
+                            }
+                        }
+                    }
+                },
+                weekNumbers: false,
+                dayMaxEvents: true, // allow "more" link when too many events
+                //aspectRatio: 2,
+                selectable: true,
+                select: function (info) {
+                    startDate = info.startStr;
+                    endDate = info.endStr;
+                },
+                eventColor: '{{ user.referee.color }}',
+                events: '{{ event_url }}',
+                eventClick: function (calEvent, jsEvent, view) {
+                    console.log(calEvent);
+                    if (confirm("Do you really want to delete ?")) {
+                        $.ajax({
+                            url: '{%  url "delete_event" %}',
+                            type: 'get', // This is the default though, you don't actually need to always mention it
+                            data: {start: calEvent.event.startStr, end: calEvent.event.endStr},
+                            success: function (data) {
+                                calEvent.event.remove();
+                            },
+                            failure: function (data) {
+                                alert('Got an error dude');
+                            }
+                        });
+                    }
+                },
+                contentHeight: 650
+            });
+            calendar.render();
+        });
+    </script>
+    <style rel='stylesheet'>
+        #calendar .fc-day-today {
+            background: #eeeeee !important;
+        }
+
+        @media screen and (max-width: 767px) {
+            .fc-toolbar.fc-header-toolbar, .btn-lang {
+                font-size: 60%
+            }
+        }
+    </style>
+{% endblock head %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div id='calendar' class="col-md-10 mt-5"></div>
+    </div>
+{% endblock content %}
