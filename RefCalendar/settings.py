@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'referee',
     'colorfield',
     'django_crontab',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -117,7 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATE = 'DEV'
+STATE = 'PROD'
 if STATE == 'PROD':
     STATIC_ROOT = BASE_DIR / 'static'
 else:
@@ -126,6 +128,8 @@ else:
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CKEDITOR_UPLOAD_PATH = BASE_DIR / 'ckeditor'
+
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'home'
 

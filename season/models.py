@@ -3,6 +3,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from ckeditor.fields import RichTextField
 
 
 # Create your models here.
@@ -13,7 +14,7 @@ class Season(models.Model):
     active = models.BooleanField(default=True)
     send_reminder = models.BooleanField(default=False)
     title_email = models.CharField(max_length=256, blank=False, verbose_name=_("title email"), default="title email")
-    content_email = models.TextField(blank=False, verbose_name=_("content email"), default="content email")
+    content_email = RichTextField(blank=False, verbose_name=_("content email"), default="content email")
 
     def __init__(self, *args, **kwargs):
         self.app_name = "season"

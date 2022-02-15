@@ -8,7 +8,7 @@ from referee.models import Referee
 
 def send_message(recipient, title, content):
     msg = email.message.Message()
-    msg['Subject'] = f"[CCA] {title}"
+    msg['Subject'] = title
     msg['From'] = settings.EMAIL_HOST_USER
     msg.add_header('Content-Type', 'text/html')
     msg.set_payload(content)
