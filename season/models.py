@@ -11,6 +11,9 @@ class Season(models.Model):
     start = models.DateField(blank=False, null=False, verbose_name=_("StarDate"), default=timezone.now)
     end = models.DateField(blank=False, null=False, verbose_name=_("EndDate"), default=timezone.now)
     active = models.BooleanField(default=True)
+    send_reminder = models.BooleanField(default=False)
+    title_email = models.CharField(max_length=256, blank=False, verbose_name=_("title email"), default="title email")
+    content_email = models.TextField(blank=False, verbose_name=_("content email"), default="content email")
 
     def __init__(self, *args, **kwargs):
         self.app_name = "season"

@@ -18,6 +18,7 @@
                     <th class="text-center">start</th>
                     <th class="text-center">end</th>
                     <th class="text-center">active</th>
+                    <th class="text-center">send reminder</th>
                     <th class="text-center">Actions</th>
                 </tr>
                 </thead>
@@ -26,11 +27,16 @@
                     <tr>
                         <td><a href="{{ obj.get_absolute_url }}">{{ obj.name }}</a>
                         </td>
-                        <td class="text-center">{{ obj.start | date:'d/m/Y'}}</td>
-                        <td class="text-center">{{ obj.end | date:'d/m/Y'}}</td>
+                        <td class="text-center">{{ obj.start | date:'d/m/Y' }}</td>
+                        <td class="text-center">{{ obj.end | date:'d/m/Y' }}</td>
                         <td class="text-center">{% if obj.active %}
                             <span style="color: darkgreen;"><i class="fas fa-check"></i></span>{% else %}<span
-                                    style="color:darkred;"><i class="fas fa-ban"></i></span> {% endif %}</td>
+                                    style="color:darkred;"><i class="fas fa-ban"></i></span> {% endif %}
+                        </td>
+                        <td class="text-center">{% if obj.send_reminder %}
+                            <span style="color: darkgreen;"><i class="fas fa-check"></i></span>{% else %}<span
+                                    style="color:darkred;"><i class="fas fa-ban"></i></span> {% endif %}
+                        </td>
                         <td class="text-center">
                             <a class="btn btn-sm btn-info mx-2" href="{{ obj.get_change_url }}" role="button"><span
                                     class="fa fa-edit"></span></a>

@@ -6,7 +6,7 @@ from .models import Season
 class SeasonForm(forms.ModelForm):
     class Meta:
         model = Season
-        fields = ['name', 'start', 'end', 'active', ]
+        fields = ['name', 'start', 'end', 'active', 'send_reminder']
         widgets = {
             'start': forms.DateInput(
                 attrs={'class': 'form-control',

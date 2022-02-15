@@ -13,7 +13,8 @@
                     </div>
                     <div class="row my-2">
                         <label class="col-md-3" for="id_start">Start:</label>
-                        <input type="text" name="email" value="{{ object.start | date:'d/m/Y'}}" class="col-md-9 form-control"
+                        <input type="text" name="email" value="{{ object.start | date:'d/m/Y' }}"
+                               class="col-md-9 form-control"
                                readonly="readonly" id="id_start">
                     </div>
                     <div class="row my-2">
@@ -23,8 +24,13 @@
                     </div>
                     <div class="row my-2">
                         <label class="col-md-3" for="id_is_active">Active:</label>
-                        <input class="col-md-9" type="checkbox" name="is_active" id="id_is_active"
+                        <input class="col-md-9" type="checkbox" name="is_active" id="id_is_active" disabled="disabled"
                                {% if object.active %}checked=""{% endif %}>
+                    </div>
+                    <div class="row my-2">
+                        <label class="col-md-3" for="id_send_reminder">Send reminder:</label>
+                        <input class="col-md-9" type="checkbox" name="send_reminder" id="id_send_reminder" disabled="disabled"
+                               {% if object.send_reminder %}checked=""{% endif %}>
                     </div>
                 </div>
             </div>
