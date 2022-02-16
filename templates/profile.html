@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
+
+{%  block head %}
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js"></script>
+{%  endblock head %}
+
 {% block content %}
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -41,6 +47,9 @@
                             <button type="submit" class="btn btn-primary">Save Changes</button>
                             <button type="reset" class="btn btn-secondary">Reset</button>
                         </form>
+                        <script>
+                            $('#id_color').colorpicker({});
+                        </script>
                     </div>
                 </div>
             </div>
