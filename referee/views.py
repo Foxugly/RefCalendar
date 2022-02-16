@@ -186,7 +186,6 @@ class ReportView(ListView):
         context['model'] = Referee
         context['year'] = year
         context['month'] = m
-        context['month_str'] = date(year, m, 1).strftime('%B')
         n_days = monthrange(year, m)[1]
         context['days'] = range(1, n_days + 1)
         total = [0 * n_days]

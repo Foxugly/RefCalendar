@@ -6,13 +6,19 @@
             <div class=" row justify-content-center">
                 <a class="btn btn-dark" href="{% url "report" %}?year={{ prev_y }}&month={{ prev_m }}"><span
                         class="fas fa-arrow-left"></span></a>
-                <h3 class="mx-5">Report {{ month_str }} {{ year }}</h3>
+                <h3 class="mx-5">{% get_month month %} {{ year }}</h3>
                 <a class="btn btn-dark" href="{% url "report" %}?year={{ next_y }}&month={{ next_m }}"><span
                         class="fas fa-arrow-right"></span></a>
             </div>
             <div class=" row mt-2">
                 <table class="table table-sm table-striped table-bordered">
                     <thead>
+                    <tr>
+                        <th class="text-center"></th>
+                        {% for d in days %}
+                            <th class="text-center">{% get_day d month year %}</th>
+                        {% endfor %}
+                    </tr>
                     <tr>
                         <th class="text-center">Name</th>
                         {% for d in days %}

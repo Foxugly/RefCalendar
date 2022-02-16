@@ -1,5 +1,9 @@
 /db.sqlite3
-season/__pycache__/*
-referee/__pycache__/*
-RefCalendar/__pycache__/*
-event/__pycache__/*
+/venv/
+/season/__pycache__/
+/season/migrations/
+/referee/__pycache__/
+/referee/migrations/
+/event/__pycache__/
+/event/migrations/
+/RefCalendar/__pycache__/

@@ -23,6 +23,7 @@ class UpdateUserForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UpdateUserForm, self).__init__(*args, **kwargs)
         self.fields["is_active"].help_text = None
+        self.fields["is_active"].widget.attrs['class'] = 'form-control'
 
 
 class UpdateAdminUserForm(UpdateUserForm):

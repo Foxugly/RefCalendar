@@ -2,3 +2,4 @@ Django~=4.0.2
 django-colorfield
 numpy
 django-crontab
+django-ckeditor
