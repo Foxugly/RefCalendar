@@ -5,8 +5,11 @@ from django.utils.translation import activate
 
 
 def home(request):
-    c = {}
-    return render(request, "home.html", c)
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+    else:
+        c = {}
+        return render(request, "home.html", c)
 
 
 @login_required
